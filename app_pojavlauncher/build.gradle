@@ -85,8 +85,8 @@ android {
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.customDebug
-            resValue 'string', 'application_package', 'com.cubix.launcher'
-            resValue 'string', 'storageProviderAuthorities', 'net.kdt.pojavlaunch.scoped.gamefolder.debug.cubix'
+            resValue 'string', 'application_package', 'com.cuberix.launcher'
+            resValue 'string', 'storageProviderAuthorities', 'net.kdt.pojavlaunch.scoped.gamefolder.debug.cuberix'
         }
         release {
             // Don't set to true or java.awt will be a.a or something similar.
@@ -95,13 +95,13 @@ android {
             // defaultConfig already set
             // multiDexEnabled = true
            // debuggable = true
-            resValue 'string', 'storageProviderAuthorities', 'net.kdt.pojavlaunch.scoped.gamefolder.cubix.rel'
-            resValue 'string', 'application_package', 'com.cubix.launcher.rel'
+            resValue 'string', 'storageProviderAuthorities', 'net.kdt.pojavlaunch.scoped.gamefolder.cuberix.rel'
+            resValue 'string', 'application_package', 'com.cuberix.launcher.rel'
         }
         gplay {
             initWith release
-            resValue 'string', 'storageProviderAuthorities', 'net.kdt.pojavlaunch.scoped.gamefolder.cubix'
-            resValue 'string', 'application_package', 'com.cubix.launcher'
+            resValue 'string', 'storageProviderAuthorities', 'net.kdt.pojavlaunch.scoped.gamefolder.cuberix'
+            resValue 'string', 'application_package', 'com.cuberix.launcher'
             signingConfig signingConfigs.googlePlayBuild
         }
     }
