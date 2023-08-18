@@ -32,6 +32,7 @@ public class CubixFileInfo implements Runnable {
         boolean fileInvalid = !destinationPath.exists();
         if(check && !fileInvalid) fileInvalid = !Tools.compareSHA1(destinationPath, sha1);
         if(fileInvalid) {
+
             try {
                 DownloadUtils.downloadFileMonitored(url, destinationPath, null, monitor);
             }catch (IOException e) {

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <Button
+        style="@style/Widget.AppCompat.Button.IngameSetting"
+        android:id="@+id/button_advanced_open_editor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mcl_option_customcontrol"
+        android:textAllCaps="false"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        style="@style/Widget.AppCompat.Button.IngameSetting"
+        android:id="@+id/button_advanced_log_output"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/control_viewout"
+        android:textAllCaps="false"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        style="@style/Widget.AppCompat.Button.IngameSetting"
+        android:id="@+id/button_advanced_send_custom_keycode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/control_customkey"
+        android:textAllCaps="false"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        style="@style/Widget.AppCompat.Button.IngameSetting"
+        android:id="@+id/button_advanced_force_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/control_forceclose"
+        android:textAllCaps="false"
+        android:layout_marginBottom="8dp"/>
+</LinearLayout>

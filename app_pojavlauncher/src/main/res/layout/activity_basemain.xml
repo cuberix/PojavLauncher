@@ -45,14 +45,53 @@
 				android:inputType="textFilter|textImeMultiLine|textAutoComplete|textAutoCorrect"
 				tools:ignore="TouchTargetSizeCheck" />
 
-			<net.kdt.pojavlaunch.customcontrols.handleview.DrawerPullButton
-				android:id="@+id/drawer_button"
-				android:layout_width="24dp"
-				android:layout_height="12dp"
-				android:elevation="10dp"
-				android:layout_gravity="center_horizontal"/>
 
 		</net.kdt.pojavlaunch.customcontrols.ControlLayout>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="#33000000"
+			android:baselineAligned="false"
+			android:paddingTop="3dp"
+			android:paddingBottom="3dp">
+
+			<LinearLayout
+				android:id="@+id/topPanel_linearLayoutStart"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:orientation="horizontal"
+				android:gravity="start">
+				<ImageButton
+					android:id="@+id/drawer_button"
+					android:layout_width="25dp"
+					android:layout_height="25dp"
+					android:background="@drawable/top_bar_icon_background"
+					android:src="@drawable/ic_sharp_settings_24"
+					android:padding="3dp"
+					android:layout_marginStart="3dp"
+					android:layout_marginEnd="3dp"/>
+				<ImageButton
+					android:id="@+id/joystick_switch_button"
+					android:layout_width="25dp"
+					android:layout_height="25dp"
+					android:background="@drawable/top_bar_icon_background"
+					android:src="@drawable/ic_gamepad_pointer"
+					android:padding="3dp"
+					android:layout_marginStart="3dp"
+					android:layout_marginEnd="3dp"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/topPanel_linearLayoutEnd"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:orientation="horizontal"
+				android:gravity="end"/>
+		</LinearLayout>
 
 		<com.kdt.LoggerView
 			android:id="@+id/mainLoggerView"
@@ -66,7 +105,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:background="#FFFFFFFF"
-			android:visibility="visible">
+			android:visibility="gone">
 
 
 			<ImageView

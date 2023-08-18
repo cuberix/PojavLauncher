@@ -41,6 +41,7 @@ public class ControlLayout extends FrameLayout {
 	private ControlHandleView mHandleView;
 	private ControlButtonMenuListener mMenuListener;
 	public ActionRow actionRow = null;
+	private String mLastLoadedLayout;
 
 	public static final int CONTROLLER_VIEW_ID = View.generateViewId();
 
@@ -56,6 +57,7 @@ public class ControlLayout extends FrameLayout {
 	public void loadLayout(String jsonPath) throws IOException, JsonSyntaxException {
 		CustomControls layout = LayoutConverter.loadAndConvertIfNecessary(jsonPath);
 		if(layout != null) {
+			mLastLoadedLayout = jsonPath;
 			loadLayout(layout);
 			return;
 		}
@@ -229,6 +231,11 @@ public class ControlLayout extends FrameLayout {
 
 	public void saveLayout(String path) throws Exception {
 		mLayout.save(path);
+		setModified(false);
+	}
+
+	public void autoSaveLayout() throws Exception{
+		mLayout.save(mLastLoadedLayout);
 		setModified(false);
 	}
 

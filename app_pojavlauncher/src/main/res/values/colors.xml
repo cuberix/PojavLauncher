@@ -10,4 +10,6 @@
 
     <color name="primary_text">#FFFFFF</color>
     <color name="secondary_text">#B2B2B2</color>
+    <color name="overlay_bg">#33FFFFFF</color>
+    <color name="overlay_text">#FFFFFFFF</color>
 </resources>

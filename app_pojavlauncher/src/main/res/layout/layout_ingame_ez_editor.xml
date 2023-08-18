@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_marginEnd="4dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/overlay_bg">
+
+            <ImageButton
+                android:background="@android:color/transparent"
+                android:id="@+id/ez_editor_joystickButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/overlay_ez_editor_controller" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TMP_JOYSTICK"
+                android:textAlignment="center"
+                android:textColor="@color/overlay_text"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginStart="4dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/overlay_bg">
+
+            <ImageButton
+                android:background="@android:color/transparent"
+                android:id="@+id/ez_editor_dpadButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/overlay_ez_editor_dpad" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TMP_GAMEPAD"
+                android:textAlignment="center"
+                android:textColor="@color/overlay_text"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+
+        android:id="@+id/ez_editor_mouse_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MOUSE SPEED" />
+
+    <SeekBar
+        android:id="@+id/ez_editor_mouse_speed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="275" />
+
+    <TextView
+        android:id="@+id/ez_editor_gyro_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gyro" />
+
+    <SeekBar
+        android:id="@+id/ez_editor_gyro_sensitivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="275" />
+</LinearLayout>

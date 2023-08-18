@@ -361,4 +361,11 @@
     <string name="preference_shader_dump_title">Enable shader dumping</string>
     <string name="preference_shader_dump_description">Log converted shaders into the log file</string>
     <string name="percent_format">%d%%</string>
+    <string name="mouse_speed_overlay">Скорость виртуальной мыши (%d%%)</string>
+    <string name="gyro_sens_overlay">Чувствительность гироскопа (%d%%)</string>
+    <string name="control_with_dpad">Управление крестовиной</string>
+    <string name="control_with_joy">Управление джойстиком</string>
+    <string name="overlay_controls">Управление</string>
+    <string name="overlay_advanced">Дополнительно</string>
+    <string name="overlay_close">Закрыть</string>
 </resources>

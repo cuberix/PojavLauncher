@@ -49,13 +49,10 @@ import net.kdt.pojavlaunch.customcontrols.ControlLayout;
 import net.kdt.pojavlaunch.customcontrols.CustomControls;
 import net.kdt.pojavlaunch.customcontrols.keyboard.LwjglCharSender;
 import net.kdt.pojavlaunch.customcontrols.keyboard.TouchCharInput;
+import net.kdt.pojavlaunch.gameoverlay.CuberixEzSettingOverlayController;
 import net.kdt.pojavlaunch.prefs.LauncherPreferences;
 import net.kdt.pojavlaunch.services.GameService;
-import net.kdt.pojavlaunch.utils.JREUtils;
 import net.kdt.pojavlaunch.utils.MCOptionUtils;
-import net.kdt.pojavlaunch.value.MinecraftAccount;
-import net.kdt.pojavlaunch.value.launcherprofiles.LauncherProfiles;
-import net.kdt.pojavlaunch.value.launcherprofiles.MinecraftProfile;
 
 import org.lwjgl.glfw.CallbackBridge;
 
@@ -77,11 +74,10 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
     private View mDrawerPullButton;
     private GyroControl mGyroControl = null;
     public static ControlLayout mControlLayout;
+    private final CuberixEzSettingOverlayController overlayController = new CuberixEzSettingOverlayController();
 
     ServerModpackConfig minecraftProfile;
 
-    private ArrayAdapter<String> gameActionArrayAdapter;
-    private AdapterView.OnItemClickListener gameActionClickListener;
     public ArrayAdapter<String> ingameControlsEditorArrayAdapter;
     public AdapterView.OnItemClickListener ingameControlsEditorListener;
 
@@ -128,6 +124,7 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
     protected void initLayout(int resId) {
         setContentView(resId);
         bindValues();
+        overlayController.initView(this);
         mControlLayout.setMenuListener(this);
 
         mDrawerPullButton.setOnClickListener(v -> onClickedMenu());
@@ -161,21 +158,8 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
 
 
             // Menu
-            gameActionArrayAdapter = new ArrayAdapter<>(this,
-                    android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.menu_ingame));
-            gameActionClickListener = (parent, view, position, id) -> {
-                switch(position) {
-                    case 0: dialogForceClose(MainActivity.this); break;
-                    case 1: openLogOutput(); break;
-                    case 2: dialogSendCustomKey(); break;
-                    case 3: adjustMouseSpeedLive(); break;
-                    case 4: adjustGyroSensitivityLive(); break;
-                    case 5: openCustomControls(); break;
-                }
-                drawerLayout.closeDrawers();
-            };
-            navDrawer.setAdapter(gameActionArrayAdapter);
-            navDrawer.setOnItemClickListener(gameActionClickListener);
+            navDrawer.setAdapter(ingameControlsEditorArrayAdapter);
+            navDrawer.setOnItemClickListener(ingameControlsEditorListener);
             drawerLayout.closeDrawers();
 
 
@@ -351,7 +335,7 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
         }
     }
 
-    private void dialogSendCustomKey() {
+    public void dialogSendCustomKey() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle(R.string.control_customkey);
         dialog.setItems(EfficientAndroidLWJGLKeycode.generateKeyName(), (dInterface, position) -> EfficientAndroidLWJGLKeycode.execKeyIndex(position));
@@ -359,12 +343,9 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
     }
 
     boolean isInEditor;
-    private void openCustomControls() {
-        if(ingameControlsEditorListener == null || ingameControlsEditorArrayAdapter == null) return;
-
+    public void openCustomControls() {
+        overlayController.hideOverlay();
         mControlLayout.setModifiable(true);
-        navDrawer.setAdapter(ingameControlsEditorArrayAdapter);
-        navDrawer.setOnItemClickListener(ingameControlsEditorListener);
         mDrawerPullButton.setVisibility(View.VISIBLE);
         isInEditor = true;
     }
@@ -383,11 +364,10 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
             Tools.showError(this,e);
         }
         //((MainActivity) this).mControlLayout.loadLayout((CustomControls)null);
-        navDrawer.setAdapter(gameActionArrayAdapter);
-        navDrawer.setOnItemClickListener(gameActionClickListener);
         isInEditor = false;
     }
-    private void openLogOutput() {
+    public void openLogOutput() {
+        overlayController.hideOverlay();
         loggerView.setVisibility(View.VISIBLE);
     }
 
@@ -558,10 +538,24 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
         });
     }
 
+    public boolean getControlType() {
+        return mControlLayout.getLayout().isJoystickEnabled;
+    }
+
+    public void setControlType(boolean isJoystick) throws Exception{
+        mControlLayout.processJoystick(isJoystick);
+        mControlLayout.autoSaveLayout();
+    }
+
+
+
     @Override
     public void onClickedMenu() {
-        drawerLayout.openDrawer(navDrawer);
-        navDrawer.requestLayout();
+        if(!isInEditor) overlayController.showOverlay();
+        else {
+            drawerLayout.openDrawer(navDrawer);
+            navDrawer.requestLayout();
+        }
     }
 
 
